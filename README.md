@@ -25,6 +25,21 @@
   </li>
 </ul>
 
+Open three shell in terminal!
+
+On shell 1:
 ```go
 $ go run main.go
 ```
+
+On shell 2:
+```go
+$ telnet localhost:8888
+```
+
+On shell 3:
+```go
+$ telnet localhost:8888
+```
+
+There you have it, 3 different connections!
