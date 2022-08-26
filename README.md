@@ -5,11 +5,11 @@
 > Transmission control protocol (TCP) is a major protocol of the internet. It sits above the network layer and provides transport mechanism for application layer protocols such as http, smtp, irc etc.
 
 ### Core logic of the app
-> Once the client connects to the server, following commands can be used. Each commands starts with /
-`/username <name>` - sets the name else user stays anonymous.
-`/join <name>` - join a room. if room doesn't exist, new room will be created. user can only be at one room at one room concurrently.
-`/rooms` - shows list of available rooms to join.
-`/msg <msg>` - broadcast message to all members in a room.
+> Once the client connects to the server, following commands can be used. Each commands starts with / <br/>
+`/username <name>` - sets the name else user stays anonymous. <br/>
+`/join <name>` - join a room. if room doesn't exist, new room will be created. user can only be at one room at one room concurrently. <br/>
+`/rooms` - shows list of available rooms to join. <br/>
+`/msg <msg>` - broadcast message to all members in a room. <br/>
 `/exit` - disconnects from chat server.
 
 
