@@ -15,3 +15,16 @@
 
 > The application consists of the following parts:
 > First, client holds a name of the user, current connection, current room. Then,  there's a room type which contains the list of the members on the room. And there's, comment, which means comment from client to server such as join colson and all other comments from the list. Then there's a centralized server which will be responsible for processing the incoming commands as well as storing rooms and clients. And there's a TCP server on top of that which accepts incoming connections.
+
+***
+
+### To run the program:
+<ul>
+  <li>
+    <span style="color: #f03c15;"> Make sure go is installed on your machine. https://go.dev/dl/ </span> 
+  </li>
+</ul>
+
+```go
+$ go run main.go
+```
