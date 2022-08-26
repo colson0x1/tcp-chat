@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	s :=  newServer()
+	s := newServer()
 	go s.run()
 
 	listener, err := net.Listen("tcp", ":8888")
@@ -21,11 +21,12 @@ func main() {
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
-			log.Printf("Unable to accept connection: %s", err.Error())
+			log.Printf("Failed to accept connection: %s", err.Error())
 			continue
 		}
 
 		// initializing client once it has been connected
-		go s.newClient(conn)
+		c := s.newClient(conn)
+		go c.readInput()
 	}
 }

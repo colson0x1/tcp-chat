@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"net"
+	"log"
+	"strings"
 )
 
 type server struct {
@@ -35,7 +37,7 @@ func (s *server) run() {
 	}
 }
 
-func (s *server) newClient(conn net.Conn) {
+func (s *server) newClient(conn net.Conn) *client {
 	log.Printf("New client has connected: %s", conn.RemoteAddr().String())
 
 	// initializing client
@@ -51,11 +53,21 @@ func (s *server) newClient(conn net.Conn) {
 }
 
 func (s *server) username(c *client, args []string) {
+	if len(args) < 2 {
+		c.msg("Username is required. usage: /username NAME")
+		return
+	}
+
 	c.username = args[1]
 	c.msg(fmt.Sprintf("All right, I will call you %s", c.username))
 }
 
 func (s *server) join(c *client, args []string) {
+	if len(args) < 2 {
+		c.msg("Room name is required. usage: /join ROOM_NAME")
+		return
+	}
+
 	roomName := args[1]
 
 	r, ok := s.rooms[roomName]
@@ -92,6 +104,11 @@ func (s *server) msg(c *client, args []string) {
 		return
 	}
 
+	if len(args) < 2 {
+		c.msg("Message is required, usage: /msg MSG")
+		return
+	}
+
 	c.room.broadcast(c, c.username + ": " + strings.Join(args[1:len(args)], " "))
 }
 
@@ -100,7 +117,7 @@ func (s *server) exit(c *client, args []string) {
 
 	s.exitCurrentRoom(c)
 
-	c.msg("Sad to see you go :(")
+	c.msg("Sad to see you go..")
 	c.conn.Close()
 }
 
